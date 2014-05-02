@@ -30,6 +30,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
          setLocationRelativeTo( null ); 
         this.conversor = new Conversor();
+        jCRemoverAcentos.setSelected(true);
     }
 
     /**
@@ -45,6 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JbuttonSelecionarPDF = new javax.swing.JButton();
         jLabelArquivoSelecionado = new javax.swing.JLabel();
         jButtonConverter = new javax.swing.JButton();
+        jCRemoverAcentos = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conversor de PDF para TXT");
@@ -67,28 +69,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jCRemoverAcentos.setText("Remover Acentos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonConverter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelArquivoSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                    .addComponent(JbuttonSelecionarPDF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonConverter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelArquivoSelecionado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                    .addComponent(JbuttonSelecionarPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jCRemoverAcentos))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addComponent(jCRemoverAcentos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelArquivoSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JbuttonSelecionarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonConverter, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButtonConverter, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,7 +136,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 try
                 {
                     File f = salvar.getSelectedFile();
-                    this.conversor.parsePdf(this.arquivoSelecionado.getAbsolutePath(), f.getAbsolutePath());
+                    this.conversor.parsePdf(this.arquivoSelecionado.getAbsolutePath(), f.getAbsolutePath(),jCRemoverAcentos.isSelected());
                     JOptionPane.showMessageDialog(this, "Arquivo convertido com sucesso!");
                 }
                 catch(IOException e)
@@ -177,6 +185,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbuttonSelecionarPDF;
     private javax.swing.JButton jButtonConverter;
+    private javax.swing.JCheckBox jCRemoverAcentos;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabelArquivoSelecionado;
     // End of variables declaration//GEN-END:variables

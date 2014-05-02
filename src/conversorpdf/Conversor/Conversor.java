@@ -13,6 +13,7 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.Normalizer;
 
 /**
  *
@@ -26,18 +27,36 @@ public class Conversor {
      * @param txt the resulting text
      * @throws IOException
      */
-    public  boolean parsePdf(String pdf, String txt) throws IOException {
+    public  boolean parsePdf(String pdf, String txt,boolean removerAcento) throws IOException {
         PdfReader reader = new PdfReader(pdf);
         PdfReaderContentParser parser = new PdfReaderContentParser(reader);
         PrintWriter out = new PrintWriter(new FileOutputStream(txt));
         TextExtractionStrategy strategy;
         for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+            
             strategy = parser.processContent(i, new SimpleTextExtractionStrategy());
-            out.println(strategy.getResultantText());
+            
+            if(removerAcento == false)
+            {       
+                out.println(strategy.getResultantText());
+            }
+            else
+            {
+                 out.println(this.removeAcentos(strategy.getResultantText()));
+            }
+            
         }
         out.flush();
         out.close();
         
         return true;
+    }
+    
+    private String removeAcentos(String str) {
+        
+        str = Normalizer.normalize(str, Normalizer.Form.NFD);
+        str = str.replaceAll("[^\\p{ASCII}]", "");
+        return str;
+
     }
 }
