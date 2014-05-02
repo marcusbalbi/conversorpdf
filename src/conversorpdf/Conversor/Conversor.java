@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package frijus.Conversor;
+package conversorpdf.Conversor;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfReaderContentParser;

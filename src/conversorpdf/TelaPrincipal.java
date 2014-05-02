@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package frijus;
+package conversorpdf;
 
-import frijus.Conversor.Conversor;
+import conversorpdf.Conversor.Conversor;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JFileChooser;
@@ -21,7 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     protected File arquivoSelecionado;
     
-    protected frijus.Conversor.Conversor conversor;
+    protected conversorpdf.Conversor.Conversor conversor;
     
     /**
      * Creates new form TelaPrincipal
